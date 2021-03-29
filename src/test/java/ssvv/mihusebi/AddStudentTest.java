@@ -1,18 +1,14 @@
 package ssvv.mihusebi;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.NotaXMLRepository;
-import repository.StudentRepository;
 import repository.StudentXMLRepository;
 import repository.TemaXMLRepository;
 import service.Service;
 import validation.NotaValidator;
 import validation.StudentValidator;
 import validation.TemaValidator;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -41,7 +37,7 @@ public class AddStudentTest {
     }
 
     @Test
-    void test_student_name_notEmpty(){
+    void test_student_name_valid(){
         String validName = "Sebi";
         int result = service.saveStudent("1", validName, 936);
 
@@ -81,7 +77,7 @@ public class AddStudentTest {
     }
 
     @Test
-    void test_student_grupa_lessThen110_return1(){
+    void test_student_grupa_lessThan110_return1(){
         int tooLessGrupa = 109;
         int result = service.saveStudent("1", "nume", tooLessGrupa);
 
@@ -89,15 +85,15 @@ public class AddStudentTest {
     }
 
     @Test
-    void test_student_grupa_equal110_return0(){
+    void test_student_grupa_equal110_return1(){
         int validGrupa = 110;
         int result = service.saveStudent("1", "nume", validGrupa);
 
-        assertEquals(0, result);
+        assertEquals(1, result);
     }
 
     @Test
-    void test_student_grupa_greaterThen110_return0(){
+    void test_student_grupa_greaterThan110_return0(){
         int greaterThan110 = 111;
         int result = service.saveStudent("1", "nume", greaterThan110);
 
