@@ -26,8 +26,6 @@ public class AddStudentTest {
         service = new Service(studentRepository, temaRepository, notaRepository);
     }
 
-
-
     @Test
     void test_student_name_empty(){
         String emptyName = "";
