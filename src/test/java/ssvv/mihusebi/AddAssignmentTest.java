@@ -41,4 +41,80 @@ public class AddAssignmentTest {
         int result = service.saveAssignment(id, "desc", 7, 6);
         assertEquals(1, result);
     }
+
+    @Test
+    void test_assignment_id_empty(){
+        String id = "";
+        int result= service.saveAssignment(id, "desc", 7, 6);
+        assertEquals(result, 1);
+    }
+
+    @Test
+    void test_assignment_descriere_valid()
+    {
+        String desc = "1";
+        int result = service.saveAssignment("id", desc, 7, 6);
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test_assignment_descriere_null()
+    {
+        String desc = null;
+        int result = service.saveAssignment("id", desc, 7, 6);
+        assertEquals(1, result);
+    }
+
+    @Test
+    void test_assignment_descriere_empty(){
+        String desc = "";
+        int result= service.saveAssignment("id", desc, 7, 6);
+        assertEquals(result, 1);
+    }
+
+
+    @Test
+    void test_assignment_deadline_lessThan1(){
+        int deadline = 0;
+        int result= service.saveAssignment("id", "desc", deadline, 6);
+        assertEquals(result, 1);
+    }
+
+    @Test
+    void test_assignment_deadline_greaterThan14(){
+        int deadline = 15;
+        int result= service.saveAssignment("id", "desc", deadline, 6);
+        assertEquals(result, 1);
+    }
+
+    @Test
+    void test_assignment_deadline_lessThanStartLine(){
+        int deadline = 2;
+        int startline = 3;
+        int result= service.saveAssignment("id", "desc", deadline, startline);
+        assertEquals(result, 1);
+    }
+
+    @Test
+    void test_assignment_deadline_greaterThanStartLine(){
+        int deadline = 3;
+        int startline = 2;
+        int result= service.saveAssignment("id", "desc", deadline, startline);
+        assertEquals(result, 1);
+    }
+
+    @Test
+    void test_assignment_startline_lessThan1(){
+        int startline = 0;
+        int result= service.saveAssignment("id", "desc", 10, startline);
+        assertEquals(result, 1);
+    }
+
+    @Test
+    void test_assignment_startline_greaterThan14(){
+        int startline = 15;
+        int result= service.saveAssignment("id", "desc", 15, startline);
+        assertEquals(result, 1);
+    }
+
 }
