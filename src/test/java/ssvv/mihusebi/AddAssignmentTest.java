@@ -100,7 +100,7 @@ public class AddAssignmentTest {
         int deadline = 3;
         int startline = 2;
         int result= service.saveAssignment("id", "desc", deadline, startline);
-        assertEquals(result, 1);
+        assertEquals(0, result);
     }
 
     @Test
